@@ -1,0 +1,35 @@
+.item{
+border-width: 1px;
+border-style: groove;
+/* width:500px; */
+margin-bottom: 10px;
+}
+
+.groceryhome{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.collapseItem{
+    visibility: collapse;
+}
+
+.hideButton{
+    display: none;
+}
+
+.disableButton{
+    cursor: not-allowed;
+}
+
+.disableOption{
+    cursor: not-allowed;
+}
+
+.groceryDropDown{
+    width: 300px;
+}
+
+.quantityDropDown{
+    width: 75px;
+}

@@ -1,1 +1,63 @@
-<p>home works!</p>
+<div class="groceryhome">
+<div style="text-align: center;">
+    Grocery List
+</div>
+
+
+<div *ngFor="let item of items" class="item">
+    <button (click)="collapseItem(item)"  [ngClass]="{'hideButton': item.collapsed}">Collapse</button>
+    <button (click)="expandItem(item)" [ngClass]="{'hideButton': !item.collapsed}" >Expand</button>
+    <button (click)="removeItem(item)" id='removeItemButton'>Remove Item</button>
+    <div [ngClass]="{'collapseItem': item.collapsed}">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Grocery Item</label>
+                    </td>
+                    <td>
+                        <select [(ngModel)]="item.selectedGrocery" (change)="onGroceryItemChange(item)"class="groceryDropDown">
+                            <option disabled selected value> -- select an option -- </option>
+                            <option *ngFor="let groceryItem of groceryItems"  [value]="groceryItem.name">{{groceryItem.name}}</option>
+                        </select>                       
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Quantity you have</label>
+                    </td>
+                    <td>
+                        <input type="number" min="0" [(ngModel)]="item.quantity" [ngClass]="{'disableOption': isQuantityYouHaveDisabled(item)}" [disabled]="isQuantityYouHaveDisabled(item)" (change)="onQuantityChange(item)">  
+                        <select [(ngModel)]="item.metric" ng-disabled='selectedGrocery == null' [ngClass]="{'disableOption': isQuantityYouHaveDisabled(item)}" [disabled]="isQuantityYouHaveDisabled(item)" class="quantityDropDown">
+                            <option *ngFor="let metric of item.metricsAvailable" [value]="metric" [selected]="metric == item.selectedGroceryItem.metric" >{{metric}}</option>
+                        </select>                  
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Person Count</label>
+                    </td>
+                    <td>
+                        <input type="number" min="1" [(ngModel)]="item.personcount">                                        
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <label>Number of days</label>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="item.numberOfDaysValue" disabled />                                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>       
+    </div>
+</div>
+
+<button (click)="addItem()" [ngClass]="{'disableButton': addBtnDisabled}" id='addItemButton'>Add Item</button>
+
+</div>
